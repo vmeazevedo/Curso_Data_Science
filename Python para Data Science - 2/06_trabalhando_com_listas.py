@@ -1,4 +1,3 @@
-
 # Criando listas
 acessorios = [ 'Rodas de liga', 'Trava elétrica', 'Piloto Automático', 'Banco de couro']
 print(acessorios)
