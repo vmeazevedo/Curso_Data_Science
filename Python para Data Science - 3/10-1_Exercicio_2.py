@@ -8,7 +8,6 @@ def km_media(dataset, ano_atual):
     result = {}
     for item in dataset.items():
         media = item[1]['km'] / (ano_atual - item[1]['ano'])
-        
         item[1].update({'km_media': media})
         result.update({item[0]: item[1]})
     return result
