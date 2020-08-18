@@ -26,9 +26,14 @@ print(dataset.loc[:, ['Motor', 'Valor']])                   # Imprimindo as info
 # Utilizando .iloc para seleções
 '''Seleciona com base nos indices, ou seja, se baseia na posição das informações.'''
 print(dataset.head())
+
 print(dataset.iloc[[1]])
+
 print(dataset.iloc[1:4])                    # Imprimindo os indices de 1:4
+
 print(dataset.iloc[1:4, [0,5,2]])           # Imprimindo os indices e os valores desejados
+
 print(dataset.iloc[[1, 42, 53], [0,5,2]])   # Imprimindo os indices e valores especificos
+
 print(dataset.iloc[:, [0,5,2]])         # Imprimindo os valores de todos os indices
 
