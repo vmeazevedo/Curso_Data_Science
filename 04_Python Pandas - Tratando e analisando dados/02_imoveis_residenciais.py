@@ -24,3 +24,10 @@ print(dados_residencial.head(20))
 # Reconstruindo o index no nosso novo dataframe
 dados_residencial.index = range(dados_residencial.shape[0])     # nosso dataframe agora possui o index do seu respectivo tamanhando, tendo a ordem crescente correta.
 print(dados_residencial)
+
+
+''' Exportando a Base de Dados '''
+dados_residencial.to_csv('dados\\aluguel_residencial.csv', sep=';' , index=False)       # exportando o arquivo csv, usamos o index false para manter a formatação que ja fizemos anteriormente
+
+dados_residencial_2 = pd.read_csv('dados\\aluguel_residencial.csv', sep=';')            # importamos o arquivo em um novo dataframe somente para teste.
+print(dados_residencial_2)
