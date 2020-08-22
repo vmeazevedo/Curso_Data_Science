@@ -28,8 +28,10 @@ eventos = {'m1': list(m1),
             'm5': list(m5)}
 
 moedas = pd.DataFrame(eventos)
+print(moedas,"\n")
 
 df = pd.DataFrame(data = ['Cara', 'Coroa'], index = ['c', 'C'], columns = ['Faces'])
+print(df,"\n")
 
 for item in moedas:
     df = pd.concat([df, moedas[item].value_counts()], axis = 1)
