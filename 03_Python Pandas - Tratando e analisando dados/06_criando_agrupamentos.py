@@ -2,6 +2,7 @@
 Criando Agrupamentos '''
 
 import pandas as pd 
+
 dados = pd.read_csv('dados\\aluguel_residencial_3.csv', sep=';')
 print(dados.head(10))
 
