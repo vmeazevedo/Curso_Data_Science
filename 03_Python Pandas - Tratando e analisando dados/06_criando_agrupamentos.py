@@ -52,3 +52,29 @@ print(sem_duplicadas)
 grupo_bairro = dados.groupby('Bairro')                  # Criamos um grupo com os valores da coluna Bairro
 v = (grupo_bairro[['Valor', 'Condominio']].mean()).round(2)             # No meu grupo, eu peço o Valor de cada item e passo o metodo mean para apresentar a media deles
 print(v)
+
+''' Estatísticas Descritivas '''
+# Utilizando o describe para pegar estatisticas
+b = grupo_bairro['Valor'].describe().round(2)
+print(b)
+
+# Utilizando o aggregate para selecionar quais estatisticas queremos plotar
+b = grupo_bairro['Valor'].aggregate(['min','max','sum']).rename(columns = {'min':'Mínimo', 'max':'Máximo', 'sum':'Soma'})
+print(b)
+
+
+
+import matplotlib.pyplot as plt
+plt.rc('figure', figsize = (10,5))     # Configura o tamanho que a figura irá ser apresentada
+
+# Apresentando os valores de aluguel por bairro com o matplotlib
+fig = grupo_bairro['Valor'].mean().plot.bar(color = 'blue')
+fig.set_ylabel('Valor do Aluguel')
+fig.set_title("Valor Médio do Aluguel x Condominio por Bairro", {'fontsize':22})
+
+fig = grupo_bairro['Condominio'].mean().plot.bar(color = 'red')
+fig.set_ylabel('Valor do Condominio')
+
+
+
+plt.show()
