@@ -16,17 +16,9 @@ alunos = pd.DataFrame({'Nome': ['Ary', 'Cátia', 'Denis', 'Beto', 'Bruna', 'Dara
 a = alunos.head(10)
 print(a)
 
-# alunos['Notas-Média(Notas)'] = alunos['Notas'].apply(lambda x: x - alunos['Notas'].mean())
-alunos['Notas-Média(Notas)'] = alunos.Notas - alunos.Notas.mean()
+alunos['Notas-Média(Notas)'] = alunos['Notas'].apply(lambda x: x - alunos['Notas'].mean())
 
 alunos['Faixa Etária'] = alunos['Idade'].apply(lambda x: 'Menor que 20 anos' if x < 20 else ('Entre 20 e 40 anos' if (x >= 20 and x <= 40) else 'Maior que 40 anos'))
-
-
-
-
-
-
-
 
 print(alunos)
 
