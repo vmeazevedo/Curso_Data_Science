@@ -27,3 +27,31 @@ casa = ['Casa', 'Casa de Condomínio', 'Casa de Vila']
 dados['Tipo Agregado'] = dados['Tipo'].apply(lambda x: 'Casa' if x in casa else 'Apartamento')    # .apply permite aplicarmos uma função para cada registro do nosso DF
 d = dados.head(10)
 print(d,"\n")
+
+########################################################################################################
+########################################################################################################
+''' Excluindo Variáveis '''
+dados_aux = pd.DataFrame(dados[['Tipo Agregado','Valor m2', 'Valor Bruto', 'Valor Bruto m2']])
+print(dados_aux.head(10))
+
+# Métodos de excluir valores no DataFrame
+# del
+del dados_aux['Valor Bruto']
+print(dados_aux.head(10))
+
+# .pop
+dados_aux.pop('Valor Bruto m2')
+print(dados_aux.head(10))
+
+# .drop
+dados_aux.drop(['Valor m2'], axis = 1, inplace=True)
+print(dados_aux.head(10))
+########################################################################################################
+########################################################################################################
+
+''' Excluindo Variáveis do nosso DataFrame '''
+dados.drop(['Valor Bruto', 'Valor Bruto m2'], axis=1, inplace=True)
+print(dados.head(10))
+
+# Exportando o nosso novo dataframe
+dados.to_csv('dados\\aluguel_residencial_3.csv', sep = ';', index = False)
