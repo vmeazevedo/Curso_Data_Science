@@ -1,5 +1,6 @@
 import pandas as pd 
 
+# Importando um Dataframe
 dados = pd.read_csv('exemplo_df.csv',sep=';')
 print(dados,"\n")
 
@@ -17,7 +18,6 @@ print(dados,"\n")
 novo_df = dados.drop(labels=1)
 print(novo_df,"\n")
 
-
 # Renomeando o index
 novo_df.index.names = ['Nº']
 print(novo_df,"\n")
@@ -26,11 +26,9 @@ print(novo_df,"\n")
 novo_df.columns = ['Países', 'Capitais', 'População', 'Moeda']
 print(novo_df)
 
-
 # Deletando colunas do DataFrame
 del novo_df['População']
 print(novo_df,"\n")
-
 
 # Exportando nosso nodo DataFrame
 novo_df.to_csv('exemplo_df_1.csv', sep=';', index=False)
