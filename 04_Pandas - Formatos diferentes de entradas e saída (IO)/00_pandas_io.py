@@ -39,5 +39,3 @@ print(nomes.head())
 # Criando a coluna de e-mails
 nomes['email'] = nomes.nome.str.cat(nomes.dominio).str.lower()
 print(nomes.head())
-
-print(nomes.count())
