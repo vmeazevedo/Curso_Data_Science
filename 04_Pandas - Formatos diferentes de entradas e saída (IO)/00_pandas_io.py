@@ -1,3 +1,4 @@
+''' Criando os nomes '''
 import pandas as pd 
 
 # Importamos nossa base de dados do IBGE
@@ -19,3 +20,24 @@ nomes = pd.concat(frames)['nome'].to_frame()
 # Apresentando alguns nomes aleatórios
 print(nomes.sample(5))
 
+''' Incluindo ID dos alunos '''
+import numpy as np
+
+# Gerando numeros aleatorio com numpy
+np.random.seed(123)
+
+# Criando os ids dos alunos
+total_alunos = len(nomes)                                       # Pegamos o numero de linhas da base
+nomes['id aluno'] = np.random.permutation(total_alunos) + 1     # Destribuindo os valores aleatóriamente dentro da base  
+print(nomes.head())
+
+# Criando a coluna dos dominios dos e-mails
+dominios = ['@dominiodoemail.com.br', '@servicodoemail.com']    # Criamos uma lista com os valores de dominios que vamos usar
+nomes['dominio'] = np.random.choice(dominios, total_alunos)     # Utilizamos o metodo .choice para escolher aleatoriamente entre eles para cada aluno
+print(nomes.head())
+ 
+# Criando a coluna de e-mails
+nomes['email'] = nomes.nome.str.cat(nomes.dominio).str.lower()
+print(nomes.head())
+
+print(nomes.count())
