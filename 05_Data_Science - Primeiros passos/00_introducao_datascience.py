@@ -1,3 +1,5 @@
+'''Analisando notas em geral '''
+
 import pandas as pd 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -28,6 +30,7 @@ print("Mediana",notas['nota'].median().round(2))
 
 # Apresentando um histograma das notas que foram dadas x quantidades
 notas.nota.plot(kind='hist')
+plt.title("Histograma das notas dos filmes")
 plt.show()
 
 # Analisando os valores das notas com o metodo .describe()
@@ -35,4 +38,5 @@ print(notas.nota.describe())
 
 # Apresentando a frequencia das informações com o boxplot   
 sns.boxplot(notas.nota)
+plt.title("Boxplot das notas dos filmes")
 plt.show()
