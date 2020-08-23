@@ -1,5 +1,5 @@
-Países;Capitais;População;Moeda
-Portugal;Lisboa;10;Euro
-Chile;Santiago;18;Peso
-Brasil;Brasilia;22;Real
-Espanha;Madrid;99;Euro
+Países;Capitais;Moeda
+Portugal;Lisboa;Euro
+Chile;Santiago;Peso
+Brasil;Brasilia;Real
+Espanha;Madrid;Euro
