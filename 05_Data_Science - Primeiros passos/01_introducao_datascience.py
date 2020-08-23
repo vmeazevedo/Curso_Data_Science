@@ -48,3 +48,4 @@ plt.title("Histograma das medias dos filmes - Matplotlib")
 plt.show()
 
 
+dataset.fillna(0, inplace = True)
