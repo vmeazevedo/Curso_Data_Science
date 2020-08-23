@@ -14,7 +14,7 @@ data = {
 df = pd.DataFrame(data, columns=['País', 'Capital'])
 print(df,"\n")
 
-# Incluindo um dados no DataFrame
+# Incluindo uma linha com dados no DataFrame
 novo_dado = ['Brasil', 'Brasilia']
 df.loc[len(df)] = novo_dado
 print(df,"\n")
