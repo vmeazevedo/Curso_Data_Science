@@ -28,7 +28,7 @@ np.random.seed(123)
 
 # Criando os ids dos alunos
 total_alunos = len(nomes)                                       # Pegamos o numero de linhas da base
-nomes['id aluno'] = np.random.permutation(total_alunos) + 1     # Destribuindo os valores aleatóriamente dentro da base  
+nomes['id_aluno'] = np.random.permutation(total_alunos) + 1     # Destribuindo os valores aleatóriamente dentro da base  
 print(nomes.head())
 
 # Criando a coluna dos dominios dos e-mails
@@ -39,3 +39,89 @@ print(nomes.head())
 # Criando a coluna de e-mails
 nomes['email'] = nomes.nome.str.cat(nomes.dominio).str.lower()
 print(nomes.head())
+
+
+''' Criando a tabela cursos '''
+import html5lib
+
+# Buscando uma tabela especifica dentro de um site
+url = 'http://tabela-cursos.herokuapp.com/index.html'
+cursos = pd.read_html(url)                  # Passamos o link do site para selecionarmos a tabela que vamos usar
+print(cursos)
+
+# Transformando a lista cursos em um Dataframe
+cursos = cursos[0]
+print(cursos.head(5))
+
+# Alterando o nome da coluna
+cursos.columns = ['nome_do_curso']          # quando temos uma coluna só podemos usar esse modo
+# cursos = cursos.rename(columns = {'Nome do curso' : 'nome_do_curso'})     # modo mais complicado rs
+print(cursos.head())
+
+# Criando uma coluna para ser o index
+cursos['id'] = cursos.index + 1
+print(cursos.head())
+
+# Usando a coluna id como index do DataFrame
+cursos = cursos.set_index('id')
+print(cursos.head())
+
+
+''' Matriculando os alunos nos cursos '''
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+print("\n",nomes.head())
+
+# Criando o numero aleatorio de matriculas em cursos diferentes por alunos
+nomes['matriculas'] = np.ceil(np.random.exponential(size = total_alunos) * 1.5).astype(int)
+print("\n",nomes.head())
+
+# Verificando as estatisicas de nosso DataFrame
+print(nomes.describe())
+
+# Verificando a quantidade apresentada no describe com o histograma
+# sns.distplot(nomes.matriculas)
+# plt.show()
+
+# Verificando as quantidades exatas com o value_counts()
+print(nomes.matriculas.value_counts())
+
+
+''' Selecionando cursos '''
+print("\n",nomes.head())
+
+todas_matriculas = []               
+x = np.random.rand(20)
+prob = x / sum(x)
+
+for index, row in nomes.iterrows():
+    id = row.id_aluno
+    matriculas = row.matriculas
+    for i in range(matriculas):
+        mat = [id, np.random.choice(cursos.index, p = prob)]
+        todas_matriculas.append(mat)
+
+matriculas = pd.DataFrame(todas_matriculas, columns= ['id_aluno', 'id_curso'])
+print(matriculas.head())
+
+matriculas_por_curso = matriculas.groupby('id_curso').count().join(cursos['nome_do_curso']).rename(columns={'id_aluno':'quantidade_de_alunos'})
+print(matriculas.head())
+
+print(nomes.sample(3))
+print(cursos.head(3))
+print(matriculas.head(3))
+print(matriculas_por_curso.head(3)) 
+
+
+''' Saida em diferentes formatos '''
+
+# Exportando em csv
+matriculas_por_curso.to_csv('matriculas_por_cursos.csv', index=False)
+pd.read_csv('matriculas_por_cursos.csv')
+
+# Exportando o json em uma variavel
+matriculas_json = matriculas_por_curso.to_json()
+
+# Exportando o html em uma variavel
+matriculas_html = matriculas_por_curso.to_html()
