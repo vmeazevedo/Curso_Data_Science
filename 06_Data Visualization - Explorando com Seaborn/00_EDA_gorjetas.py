@@ -6,14 +6,14 @@ import seaborn as sns
 dados = pd.read_csv('data\\tips.csv',sep=',')
 print(dados.head())
 
-''' Tradução '''
+''' Tradução das Colunas '''
 # Tradução dos campos da coluna
 dados.columns = ['valor_da_conta', 'gorjeta','sobremesa','dia_da_semana', 'hora_do_dia', 'total_de_pessoas']
 gorjetas = dados
 print('\n',gorjetas.head())
 
 
-
+''' Tradução das Linhas '''
 # Alterando para portugues a coluna sobremesa
 print(gorjetas.sobremesa.unique())              # Verificando os valores unicos
 
