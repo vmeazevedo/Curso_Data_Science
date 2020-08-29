@@ -26,6 +26,8 @@ porcentagem = dados['Profissão'].value_counts(normalize = True)*100
 dist_freq_qualitativa = pd.DataFrame({'Frequência':frequencia, 'Porcentagem (%)': porcentagem})
 print(dist_freq_qualitativa.head())
 
-# Renomeando o index do DataFrame
+# Renomeando as linhas do index do DataFrame
 dist_freq_qualitativa.rename(index = {1:'Estatístico', 2:'Cientista de Dados', 3:'Programador Python'}, inplace = True)
+# Renomeando a coluna do index do DataFrame
+dist_freq_qualitativa.rename_axis('Profissão', axis='columns', inplace=True)
 print(dist_freq_qualitativa.head())
