@@ -23,7 +23,7 @@ frequencia = dados['Profissão'].value_counts()
 porcentagem = dados['Profissão'].value_counts(normalize = True)*100
 
 # Criando um novo dataframe com as variaveis
-dist_freq_qualitativa = pd.DataFrame({'Frequência':frequencia, 'Porcentagem (%)': porcentagem})
+dist_freq_qualitativa = pd.DataFrame({'Frequência':frequencia, 'Porcentagem (%)': porcentagem.round(3)})
 print(dist_freq_qualitativa.head())
 
 # Renomeando as linhas do index do DataFrame
