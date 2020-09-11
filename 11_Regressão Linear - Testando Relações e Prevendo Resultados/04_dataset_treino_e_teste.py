@@ -68,5 +68,74 @@ fds = 0
 entrada=[[temp_max, chuva, fds]]
 
 print('{0:.2f} litros'.format(modelo.predict(entrada)[0]))
+print('\n')
 
 
+'''
+Interpretação dos Coeficientes Estimados
+'''
+# Obtendo o intercepto do modelo
+''' O intercepto representa o efeito médio em Y (Consumo de Cerveja) tendo todas as variáveis explicativas excluídas do modelo.
+De forma mais simples, o intercepto representa o efeito médio em Y (Consumo de Cerveja)  quando X2 (Temperatura Máxima),
+X3 (Chuva) e X4 (Final de Semana) são iguais a zero.'''
+print(modelo.intercept_)
+print(type(modelo.intercept_))
+
+# Obtendo os coeficientes de regressão
+''' Os coeficientes de regressão B2,B3 e B4 são conhecidos como coeficientes parciais de resgressão ou coeficientes parciais angulares.
+Considerando o número de variáveis explicativas de nosso modelo, seu significado seria o seguinte: B2 mede a variação no valor médio de Y,
+por unidade de variação em X2, mantendo-se os valores de X3 e X4 constantes. Em outras palavras, ele nos dá o efeito "direto" ou "liquido"
+de uma unidade de variação em X2 sobre o valor médio de Y, excluidos os efeitos que X3 e X4 possam ter sobre média de Y. De modo análogo podemos
+interpretar os demais coeficientes de regressão.'''
+print(modelo.coef_)
+print(type(modelo.coef_))
+
+# Confirmando a ordem das variaveis explicativas no DF
+print(X.columns)
+
+# Criando uma lista com os nomes das variaveis do modelo
+index=['Intercepto','Temperatura Máxima','Chuva (mm)','Final de Semana']
+
+# Criando um DF para armazenar os coeficientes do modelo
+print(pd.DataFrame(data=np.append(modelo.intercept_, modelo.coef_), index=index, columns=['Parâmetros']))
+
+''' 
+Interpretação dos Coeficientes Estimados
+Intercepto -> Excluindo o efeito das variáveis explicativas (X2 = X3 = X4 = 0) o efeito médio no consumo de cerveja seria de 5951,98L.
+Temperatura Máxima (°C) -> Mantendo-se os valores de X3 e X4 constantes, o acréscimo de 1°C na Temperatura Máxima gera uma variação média no consumo de cerveja de 684,74L.
+Chuva (mm) -> Mantendo-se os valores de X2 e X4 constantes, o acréscimo de 1mm de chuva gera uma variação média no consumo de cerveja de -60,78L.
+Final de Semana -> Mantendo-se os valores de X2 e X3 constantes, o fato de o dia ser classificado como final de semana gera uma variação média no constumo de cerveja de 5401,08L.
+'''
+
+'''
+Análise Gráficas das Previsões do Modelo
+'''
+
+# Gerando as previsões do modelo para os dados de treino
+y_previsto_train = modelo.predict(X_train)
+
+# Gráfico de dispersão entre valor estimado e valor real
+ax = sns.scatterplot(x=y_previsto_train, y= y_train)
+ax.figure.set_size_inches(12,6)
+ax.set_title('Previsão x Real', fontsize = 16)
+ax.set_xlabel('Consumo de Cerveja (litros) - Previsão', fontsize = 14 )
+ax.set_ylabel('Consumo de Cerveja (litros) - Real', fontsize = 14 )
+plt.show()
+
+# Obtendo os resíduos
+residuo = y_train - y_previsto_train
+
+# Gráfico de dispersão entre valor estimado e resíduos
+ax = sns.scatterplot(x=y_previsto_train, y= residuo, s=50)
+ax.figure.set_size_inches(12,6)
+ax.set_title('Previsão x Real', fontsize = 16)
+ax.set_xlabel('Consumo de Cerveja (litros) - Previsão', fontsize = 14 )
+ax.set_ylabel('Residuos ', fontsize = 14 )
+plt.show()
+
+# Plotando a distribuição de frenquencias dos residuos
+ax = sns.distplot(residuo)
+ax.figure.set_size_inches(12,6)
+ax.set_title('Distribuição de Frequências dos Resíduos', fontsize = 16)
+ax.set_xlabel('Litros', fontsize = 14 )
+plt.show()
