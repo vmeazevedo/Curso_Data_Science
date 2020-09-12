@@ -1,0 +1,3 @@
+USE SUCOS;
+
+DROP TABLE tbcliente3;
