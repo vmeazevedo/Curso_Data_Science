@@ -1,0 +1,31 @@
+CLASSIFICACAO = SWITCH(DANO[DANO]; 
+"Calota dianteira direita"; "Baixo";
+"Calota dianteira esquerda"; "Baixo";
+"Calota traseira direita"; "Baixo";
+"Calota traseira esquerda"; "Baixo";
+"Parachoque dianteiro direito"; "Baixo";
+"Parachoque traseiro direito"; "Baixo";
+"Parachoque dianteiro frontal"; "Baixo";
+"Parachoque traseiro frontal"; "Baixo";
+"Parachoque dianteiro esquerdo"; "Baixo";
+"Parachoque traseiro esquerdo"; "Baixo";
+"Farol dianteiro esquerdo"; "Médio";
+"Farol dianteiro direito"; "Médio";
+"Lanterna traseira esquerda"; "Médio";
+"Lanterna traseira direita"; "Médio";
+"Porta traseira direita"; "Médio";
+"Porta traseira esquerda"; "Médio";
+"Porta dianteira direita"; "Médio";
+"Porta dianteira esquerda"; "Médio";
+"Janela dianteira direita"; "Alto";
+"Janela traseira direita"; "Alto";
+"Janela dianteira esquerda"; "Alto";
+"Janela traseira esquerda"; "Alto";
+"Teto"; "Alto";
+"Capo"; "Alto";
+"Parabrisa traseiro"; "Alto";
+"Parabrisa dianteiro"; "Alto";
+"Espelho esquerdo"; "Alto";
+"Espelho direito"; "Alto";
+"Portamalas"; "Médio"
+)
